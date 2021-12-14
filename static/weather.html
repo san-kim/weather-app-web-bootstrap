@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Weather Search</title>
+        <link rel="stylesheet" type="text/css" href="../static/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300;1,400&display=swap" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/data.js"></script>
+        <script src="https://code.highcharts.com/highcharts-more.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+        <script src="https://code.highcharts.com/modules/windbarb.js"></script>
+        <script src="https://code.highcharts.com/modules/pattern-fill.js"></script>
+        <script src="/static/script.js"></script>
+                
+    </head>
+    <body onload="processweatherinfo();">
+        <form id="searchform"  method="get" onsubmit="return formsubmit();">
+            <div id="searchformheader">
+                <img id="searchbanner" src="../static/images/banner.jpg">
+                <h2 id="searchformheaderlabel1">Weather Search</h2>
+                <h3 id="searchformheaderlabel2">Fill out the form to get weather info!</h3>
+            </div>
+            <div class="formlabel" id="streetlabel">
+                Street <span class="redstar">*</span>
+            </div>
+            <input id="street" name="street" type="text" required>
+            
+            <div class="formlabel" id="citylabel">
+                City <span class="redstar">*</span>
+            </div>
+            <input id="city" name="city" type="text" required>
+            
+            <div class="formlabel" id="statelabel">
+                State <span class="redstar">*</span>
+            </div>
+            <select name="state" id="state" required>
+                <option selected="true" disabled="true" value="">Select your state</option>
+                <option value="AL">Alabama</option>
+                <option value="AK">Alaska</option>
+                <option value="AZ">Arizona</option>
+                <option value="AR">Arkansas</option>
+                <option value="CA">California</option>
+                <option value="CO">Colorado</option>
+                <option value="CT">Connecticut</option>
+                <option value="DE">Delaware</option>
+                <option value="FL">Florida</option>
+                <option value="GA">Georgia</option>
+                <option value="HI">Hawaii</option>
+                <option value="ID">Idaho</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="KS">Kansas</option>
+                <option value="KY">Kentucky</option>
+                <option value="LA">Louisiana</option>
+                <option value="ME">Maine</option>
+                <option value="MD">Maryland</option>
+                <option value="MA">Massachusetts</option>
+                <option value="MI">Michigan</option>
+                <option value="MN">Minnesota</option>
+                <option value="MS">Mississippi</option>
+                <option value="MO">Missouri</option>
+                <option value="MT">Montana</option>
+                <option value="NE">Nebraska</option>
+                <option value="NV">Nevada</option>
+                <option value="NH">New Hampshire</option>
+                <option value="NJ">New Jersey</option>
+                <option value="NM">New Mexico</option>
+                <option value="NY">New York</option>
+                <option value="NC">North Carolina</option>
+                <option value="ND">North Dakota</option>
+                <option value="OH">Ohio</option>
+                <option value="OK">Oklahoma</option>
+                <option value="OR">Oregon</option>
+                <option value="PA">Pennsylvania</option>
+                <option value="RI">Rhode Island</option>
+                <option value="SC">South Carolina</option>
+                <option value="SD">South Dakota</option>
+                <option value="TN">Tennessee</option>
+                <option value="TX">Texas</option>
+                <option value="UT">Utah</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WA">Washington</option>
+                <option value="WV">West Virginia</option>
+                <option value="WI">Wisconsin</option>
+                <option value="WY">Wyoming</option>
+            </select>
+            
+            <hr size="1" color="#4f6da7" id="searchdivider">
+            
+            <label id="checkboxlabel" for="autodetectlocation">Want us to auto-detect your location? Check here </label>            
+            <input type="checkbox" id="autodetectlocation" name="autodetectlocation" onclick="autodetectselected();">
+            
+            <br>
+            <input type="submit" id="searchsubmitbutton" value="SUBMIT">
+        </form>
+        <button id="searchclearbutton" onclick="clearsearchinputs();">CLEAR</button>
+        
+        <div id="maincard">
+            <p id="maincard-location"></p>
+            <div id="maincard-weatherdiv" class="maincard-row1">
+                <img id="maincard-weatherimg" src="">
+                <p id="maincard-weather"></p>
+            </div>
+            <div id="maincard-temperaturediv" class="maincard-row1">
+                <p id="maincard-temperature"></p>
+            </div>
+            <div id="maincard-bot-col1" class="maincard-row2">
+                <p class="maincard-row2-header">Humidity</p>
+                <img class="maincard-icons" src='../static/images/humidity.png'>
+                <p id="maincard-humidity" class="maincard-row2-results"></p>
+            </div>
+            <div id="maincard-bot-col2" class="maincard-row2">
+                <p class="maincard-row2-header">Pressure</p>
+                <img class="maincard-icons" src='../static/images/pressure.png'>
+                <p id="maincard-pressure" class="maincard-row2-results"></p>
+            </div>
+            <div id="maincard-bot-col3" class="maincard-row2">
+                <p class="maincard-row2-header">Wind Speed</p>
+                <img class="maincard-icons" src='../static/images/windspeed.png'>
+                <p id="maincard-windspeed" class="maincard-row2-results"></p>
+            </div>
+            <div id="maincard-bot-col4" class="maincard-row2">
+                <p class="maincard-row2-header">Visibility</p>
+                <img class="maincard-icons" src='../static/images/visibility.png'>
+                <p id="maincard-visibility" class="maincard-row2-results"></p>
+            </div>
+            <div id="maincard-bot-col5" class="maincard-row2">
+                <p class="maincard-row2-header">Cloud Cover</p>
+                <img class="maincard-icons" src='../static/images/cloudcover.png'>
+                <p id="maincard-cloudcover" class="maincard-row2-results"></p>
+            </div>
+            <div id="maincard-bot-col6" class="maincard-row2">
+                <p class="maincard-row2-header">UV Level</p>
+                <img class="maincard-icons" src='../static/images/uvlevel.png'>
+                <p id="maincard-uvlevel" class="maincard-row2-results"></p>
+            </div>
+        </div>
+        
+        <div id="dayscard">
+            <table id="daystable">
+                <!-- to be populated by script -->
+            </table>
+        </div>
+        
+        <div id="dailydetailsheaderdiv">
+            <p>Daily Weather Details</p>
+        </div>
+        <div id="dailydetailsdiv">
+            <div id="dailydetailsdiv-topleft">
+                <p id="dailydetailsdiv-date" class="dailydetailsdiv-h1">Thursday, 09, Sep 2021</p>
+                <p id="dailydetailsdiv-status" class="dailydetailsdiv-h1">Light Fog</p>
+                <p id="dailydetailsdiv-highlow" class="dailydetailsdiv-h2">90.88°F/64.87°F</p>
+            </div>
+            <img id="dailydetailsdiv-image" src="/static/images/fog_light.svg">
+            <div id="dailydetailsdiv-bottomleft">
+                <p class="dailydetailsdiv-bottomleft-labels">Precipitation:&nbsp;</p>
+                <p class="dailydetailsdiv-bottomleft-labels">Chance of Rain:&nbsp;</p>
+                <p class="dailydetailsdiv-bottomleft-labels">Wind Speed:&nbsp;</p>
+                <p class="dailydetailsdiv-bottomleft-labels">Humidity:&nbsp;</p>
+                <p class="dailydetailsdiv-bottomleft-labels">Visibility:&nbsp;</p>
+                <p class="dailydetailsdiv-bottomleft-labels">Sunrise/Sunset:&nbsp;</p>
+            </div>
+            <div id="dailydetailsdiv-bottomright">
+                <p class="dailydetailsdiv-bottomleft-values" id="dailydetailsdiv-precipitation">N/A</p>
+                <p class="dailydetailsdiv-bottomleft-values" id="dailydetailsdiv-chanceofrain">0%</p>
+                <p class="dailydetailsdiv-bottomleft-values" id="dailydetailsdiv-windspeed">13.24 mph</p>
+                <p class="dailydetailsdiv-bottomleft-values" id="dailydetailsdiv-humidity">94.96%</p>
+                <p class="dailydetailsdiv-bottomleft-values" id="dailydetailsdiv-visibility">9.94 mi</p>
+                <p class="dailydetailsdiv-bottomleft-values" id="dailydetailsdiv-sunrisesunset">6AM/7PM</p>
+            </div>
+        </div>
+        
+        <div id="weatherchartsheaderdiv">
+            <p id="weatherchartsheader">Weather Charts</p>
+        </div>
+        
+        <div id="arrowdiv">
+            <a id="downarrow" onclick="goToChartCards();"><img id="downarrowimg" src="/static/images/point-down-512.png"></a>
+            <a id="uparrow" onclick="collapseChartCards();"><img id="uparrowimg" src="/static/images/point-up-512.png"></a>
+        </div>
+        
+        <div id="temperaturerangechartdiv">
+            
+        </div>
+        <div id="hourlyweatherchartdiv">
+        
+        </div>
+        
+        <div id="errordiv">
+            <p>No records have been found.</p>
+        </div>
+    </body>
+</html>

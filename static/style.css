@@ -1,0 +1,466 @@
+body{
+    padding:0px;
+    margin:0px;
+    background-color: rgb(230,230,230);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+    overflow: auto;
+}
+
+button, input, option
+{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+    overflow: auto;
+}
+
+#searchform
+{
+    width: 500px;
+    height: 430px;
+    border: 1px solid lightgray;
+    box-shadow: 0px 2px lightgray;
+    background-color: white;
+    margin-left: calc(50vw - 250px);
+    margin-top: 50px;
+}
+
+#searchformheader
+{
+    border-bottom: 2px solid lightgray;
+    width: 500px;
+    height: 100px;
+}
+
+#searchbanner
+{
+    width: 500px;
+    height: 100px;
+}
+
+#searchformheaderlabel1
+{
+    z-index: 101;
+    position: absolute;
+    margin-top: -85px;
+    margin-left: 30px;
+    color: rgb(90,90,90);
+    font-weight: 400;
+    font-size: 22px;
+}
+
+#searchformheaderlabel2
+{
+    z-index: 101;
+    position: absolute;
+    margin-top: -45px;
+    margin-left: 30px;
+    color: rgb(90,90,90);
+    font-weight:300;
+    font-size: 16px;
+}
+
+.formlabel
+{
+    color:#4f6da7;
+}
+
+.redstar
+{
+    color: red;
+}
+
+#streetlabel
+{
+    margin-left: 30px;
+    margin-top: 20px;
+}
+#street
+{
+    margin-left: 30px;
+    margin-right:30px;
+    margin-top: 5px;
+    width: 432px;
+    height: 25px;
+}
+
+#citylabel
+{
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 30px;
+}
+#city
+{
+    position:absolute;
+    width: 200px;
+    height: 25px;
+    margin-left: 30px;
+    margin-top: 50px;
+}
+
+#statelabel
+{
+    position: absolute;
+    margin-top: 20px;
+    margin-left: calc(250px + 15px);
+}
+
+#state
+{
+    width: 205px;
+    height: 32px;
+    margin-left: 265px;
+    margin-top: 49px;
+    font-family: 'Poppins', sans-serif;
+}
+
+#searchdivider
+{    
+    width: 440px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+#checkboxlabel
+{
+    color:#4f6da7;
+    margin-left: 30px;
+}
+#autodetectlocation
+{
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    margin-top: 5px;
+    margin-left: 6px;
+}
+
+#searchsubmitbutton
+{
+    width:100px;
+    height: 40px;
+    font-size: 16px;
+    border:none;
+    color:white;
+    background-color: #4f6da7;
+    box-shadow: 0px 5px #374b75;
+    margin-left: 30px;
+    margin-top: 25px;
+    cursor: pointer;
+}
+#searchsubmitbutton:hover
+{
+    background-color: #7187b2;
+}
+
+#searchclearbutton
+{
+    width:100px;
+    height: 40px;
+    font-size: 16px;
+    border:none;
+    color:white;
+    background-color: #f6b943;
+    box-shadow: 0px 5px #f18833;
+    position: absolute;
+    margin-left: calc(50vw - 250px + 140px);
+    margin-top: -76px;
+    cursor: pointer;
+}
+#searchclearbutton:hover
+{
+    background-color: #f5c467;
+}
+
+#maincard
+{
+    width: 660px;
+    height: 410px;
+    background-color: white;
+    border: 1px 1px 1px 5px solid lightgray;
+    margin-left: calc(50vw - 330px);
+    margin-top : 50px;
+    margin-bottom: 50px;
+    display:none;
+}
+#maincard:hover
+{
+    box-shadow: 3px 3px 3px 3px #bbbbbb;
+}
+
+#maincard-location
+{
+    color:gray;
+    font-size: 22px;
+    position:absolute;
+    padding: 0px;
+    margin-top: 15px;
+    margin-left: 20px;
+}
+.maincard-row1
+{
+    width: 330px;
+    float:left;
+    height: 180px;
+    margin-top: 60px;
+}
+#maincard-weatherimg
+{
+    height: 148px;
+    margin-left: 20px;
+}
+#maincard-weather
+{
+    margin: 0px;
+    font-size: 16px;
+    color: gray;
+    margin-left: 35px;
+}
+#maincard-temperature
+{
+    font-size: 120px;
+    color: gray;
+    margin: 0px;
+    margin-left: 
+}
+
+.maincard-row2
+{
+    width: 110px;
+    float: left;
+    text-align: center;
+    margin-top: 10px;
+}
+.maincard-row2-header
+{
+    color: gray;
+    font-size: 16px;
+}
+.maincard-icons
+{
+    width: 30px;
+}
+.maincard-row2-results
+{
+    color: gray;
+    font-size: 16px;
+}
+
+
+#dayscard
+{
+    width: 1000px;
+    border: 1px 1px 1px 5px solid lightgray;
+    margin-left: calc(50vw - 500px);
+    margin-bottom: 50px;
+    display:none;
+}
+
+#daystable
+{
+    table-layout: auto;
+    width: 1000px;
+    text-align: center;
+    color: black;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+#daystableheadrow
+{
+    background-color: #5e7ab4;
+    height: 50px;
+}
+#daystableheadrow th
+{
+    font-weight: 200 !important;
+}
+
+.daystablerow
+{
+    height: 80px;
+    padding-top: 10px;
+    background-color: white;
+}
+
+.daystablerow:hover
+{
+    box-shadow: 1px 1px 1px 1px lightgray;
+    cursor: pointer;
+}
+
+.daysweathericon
+{
+    height: 60px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.daysweather
+{
+    display:inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+#dailydetailsheaderdiv
+{
+    width: 100vw;
+    text-align: center;
+    font-size: 35px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: none;
+}
+
+#dailydetailsdiv
+{
+    width: 500px;
+    margin-left: calc(50vw - 250px);
+    height: 400px;
+    background-image: linear-gradient(white, rgb(55,75,117));
+    border: 1px solid lightgray;
+    box-shadow: 0 2px lightgray;
+    display: none;
+}
+
+#dailydetailsdiv:hover
+{
+    box-shadow: 3px 3px 3px 3px #bbbbbb;
+}
+#dailydetailsdiv-topleft
+{
+    width: 300px;
+    display: inline-block;
+    vertical-align: middle;
+    height: 170px;
+    color: rgb(55,75,117);
+}
+.dailydetailsdiv-h1
+{
+    margin-left: 20px;
+    font-size: 22px;
+    line-height: 20px;
+}
+.dailydetailsdiv-h2
+{
+    margin-left: 20px;
+    font-size: 35px;
+    line-height: 20px;
+}
+#dailydetailsdiv-image
+{
+    height: 150px;
+    margin-left: 20px;
+    display: inline-block;
+    vertical-align: middle;
+}
+#dailydetailsdiv-bottomleft
+{
+    margin-top: 0px;
+    width: 300px;
+    display: inline-block;
+    vertical-align: middle;
+    height: 200px;
+    margin-top: 15px;
+    text-align: right;
+}
+#dailydetailsdiv-bottomright
+{
+    margin-top: 0px;
+    width: 195px;
+    display: inline-block;
+    vertical-align: middle;
+    height: 200px;
+    margin-top: 15px;
+}
+.dailydetailsdiv-bottomleft-labels
+{
+    color: white;
+    line-height: 14px;
+}
+.dailydetailsdiv-bottomleft-values
+{
+    color: white;
+    line-height: 14px;
+    font-weight: 300 !important;
+}
+
+#weatherchartsheaderdiv
+{
+    width: 100vw;
+    text-align: center;
+    font-size: 35px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    display: none;
+}
+
+#arrowdiv
+{
+    width: 100vw;
+    margin-top: -20px;
+    margin-bottom: 50px;
+    text-align: center;
+    display: none;
+}
+#downarrow
+{
+    cursor: pointer;
+    display: none;
+}
+#uparrow
+{
+    cursor: pointer;
+    display: none;
+}
+#downarrowimg
+{
+    height: 50px;
+}
+#uparrowimg
+{
+    height: 50px;
+}
+
+#temperaturerangechartdiv
+{
+    width: 800px;
+    height: 350px;
+    margin-left: calc(50vw - 400px);
+    background-color: white;
+    margin-bottom: 50px;
+    display: none;
+    margin-top: -30px;
+}
+
+#hourlyweatherchartdiv
+{
+    width: 800px;
+    height: 350px;
+    margin-left: calc(50vw - 400px);
+    background-color: white;
+    margin-bottom: 50px;
+    display: none;
+}
+
+
+#errordiv
+{
+    width: 500px;
+    height: 50px;
+    border: 1px solid lightgray;
+    box-shadow: 0px 2px lightgray;
+    background-color: white;
+    margin-left: calc(50vw - 250px);
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: none;
+    text-align: center;
+}
+#errordiv p
+{
+    margin-top: 13px;
+}
